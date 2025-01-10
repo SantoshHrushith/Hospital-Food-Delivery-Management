@@ -8,7 +8,7 @@ const H = () => {
         try {
             const response =  axios.get(`https://hospital-food-delivery-management-tau.vercel.app/api/patients/6780f8358f06bc248b2542ef`);
             const fetchedData = response.data;
-            console.log(response.data);
+            console.log(response);
             setData(fetchedData); // Update state with fetched data
         } catch (error) {
             console.error('Error fetching data:', error);
