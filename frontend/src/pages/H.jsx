@@ -52,7 +52,6 @@ const H = () => {
     //     };
 
     const handleClick = async () => {
-        console.log('entry');
       
         try {
           const response = await axios.get(
@@ -65,10 +64,8 @@ const H = () => {
             }
           );
       
-          console.log('after api call');
           const fetchedData = response.data; // Extract data from the response
           setData(fetchedData); // Update state with fetched data
-          console.log(fetchedData); // Log fetched data
         } catch (error) {
           console.error('Error fetching patient data:', error); // Handle errors
         }
