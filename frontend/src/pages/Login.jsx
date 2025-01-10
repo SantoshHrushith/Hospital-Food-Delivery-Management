@@ -21,8 +21,12 @@ const Login = () => {
             const res = await API.post('/users/login',
 
                 { email, password },
-                );
-                console.log(res.data);
+                {
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Access-Control-Allow-Origin': '*',
+                    },
+                },);
             const { token, role } = res.data;
 
             // Save token and role to localStorage
