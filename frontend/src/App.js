@@ -15,13 +15,15 @@ import PrivateRoute from './PrivateRoute.jsx'
 import DeliveryPortal from './pages/DeliveryPortal.jsx';
 import PantryHome from './pages/PantryHome.jsx';
 import { Navigate } from 'react-router-dom';
+import H from './pages/H.jsx';
 
 function App() {
   return (
     <Router>
       <Routes>
         <Route path='/login' element={<Login />} />
-        <Route element={<PrivateRoute />}>
+        <Route path='/' element={<H />} />
+        {/* <Route element={<PrivateRoute />}>
           <Route path='/managerhome' element={<ManagerHome />} />
           <Route path='/pantryhome' element={<PantryHome />} />
           <Route path='/patients' element={<Patient />} />
@@ -34,8 +36,8 @@ function App() {
           <Route path='/staff' element={<Staff />} />
           <Route path='/pantry' element={<Pantry />} />
           <Route path='/delivery' element={<DeliveryPortal />} /> 
-        </Route>
-        <Route path="/" element={<Navigate to="/login" />} />
+        </Route> */}
+        {/* <Route path="/" element={<Navigate to="/login" />} /> */}
   {/* Fallback for undefined routes */}
   <Route path="*" element={<Navigate to="/login" />} />
 
