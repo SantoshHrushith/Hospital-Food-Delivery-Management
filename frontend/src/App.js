@@ -22,7 +22,7 @@ function App() {
     <Router>
       <Routes>
         <Route path='/login' element={<Login />} />
-        <Route path='/' element={<H />} />
+        {/* <Route path='/' element={<H />} /> */}
         <Route element={<PrivateRoute />}>
           <Route path='/managerhome' element={<ManagerHome />} />
           <Route path='/pantryhome' element={<PantryHome />} />
