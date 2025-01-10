@@ -17,7 +17,14 @@ const Login = () => {
     const handleLogin = async (e) => {
         e.preventDefault();
         try {
-            const res = await API.post('/users/login', { email, password });
+            const res = await API.post('/users/login',
+                {
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Access-Control-Allow-Origin': '*',
+                    },
+                },
+                { email, password });
             const { token, role } = res.data;
 
             // Save token and role to localStorage
