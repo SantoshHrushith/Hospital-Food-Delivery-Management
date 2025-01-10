@@ -19,7 +19,7 @@ const DeliveryPortal = () => {
 
         const fetchDeliveryPersons = async () => {
             try {
-                const response = await axios.get("https://hospital-food-delivery-management-api.vercel.app/api/staff/delivery",{
+                const response = await axios.get('https://hospital-food-delivery-management-api.vercel.app/api/staff/delivery',{
                     headers: {
                         'Content-Type': 'application/json',
                         'Access-Control-Allow-Origin': '*',
@@ -58,7 +58,7 @@ const DeliveryPortal = () => {
                 const response = await axios.get(
                     selectedPerson
                         ? `https://hospital-food-delivery-management-api.vercel.app/api/deliveries/deliver/${selectedPerson}`
-                        : "https://hospital-food-delivery-management-api.vercel.app/api/deliveries/deliver/pending",
+                        : 'https://hospital-food-delivery-management-api.vercel.app/api/deliveries/deliver/pending',
                     {
                         headers: {
                             'Content-Type': 'application/json',

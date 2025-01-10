@@ -20,7 +20,14 @@ const DietCreate = () => {
   useEffect(() => {
     const fetchPantryStaff = async () => {
       try {
-        const response = await axios.get('https://hospital-food-delivery-management-api.vercel.app/api/staff');
+        const response = await axios.get('https://hospital-food-delivery-management-api.vercel.app/api/staff',
+          {
+            headers: {
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin': '*',
+            },
+        },
+        );
         setPantryStaff(response.data);
       } catch (error) {
         console.error('Error fetching pantry staff:', error);
@@ -65,7 +72,12 @@ const DietCreate = () => {
         },
       };
 
-      const response = await axios.post('https://hospital-food-delivery-management-tau.vercel.app/api/diets/create', payload);
+      const response = await axios.post('https://hospital-food-delivery-management-tau.vercel.app/api/diets/create', payload, {
+        headers: {
+          'Content-Type': 'application/json',
+          'Access-Control-Allow-Origin': '*',
+        },
+      },);
 
       if (response.status === 201) {
         alert('Diet successfully created!');
@@ -80,67 +92,67 @@ const DietCreate = () => {
   return (
     <div className='d-flex'>
       <div style={{ width: '20%' }}>
-        <ManagerSideBar/>
+        <ManagerSideBar />
       </div>
       <div className="flex-grow-1" style={{ padding: '20px', maxWidth: '800px', margin: '0 auto' }}>
-      <h1>Create Diet for Patient {patientId}</h1>
-      <form onSubmit={handleSubmit}>
-        {['morning', 'evening', 'night'].map((mealType) => (
-          <div key={mealType} style={{ marginBottom: '20px' }}>
-            <h3>{mealType.charAt(0).toUpperCase() + mealType.slice(1)} Meal</h3>
-            <label>Ingredients (comma-separated):</label>
-            <input
-              type="text"
-              name="ingredients"
-              value={formData[mealType].ingredients}
-              onChange={(e) => handleChange(e, mealType)}
-              required
-            />
-            <br />
-            <label>Instructions:</label>
-            <textarea
-              name="instructions"
-              value={formData[mealType].instructions}
-              onChange={(e) => handleChange(e, mealType)}
-            />
-            <br />
-            <label>Assigned To:</label>
-            <select
-              name="assignedTo"
-              value={formData[mealType].assignedTo}
-              onChange={(e) => handleChange(e, mealType)}
-              required
-            >
-              <option value="">Select Pantry Staff</option>
-              {pantryStaff.map((staff) => (
-                <option key={staff._id} value={staff._id}>
-                  {staff.name}
-                </option>
-              ))}
-            </select>
-          </div>
-        ))}
+        <h1>Create Diet for Patient {patientId}</h1>
+        <form onSubmit={handleSubmit}>
+          {['morning', 'evening', 'night'].map((mealType) => (
+            <div key={mealType} style={{ marginBottom: '20px' }}>
+              <h3>{mealType.charAt(0).toUpperCase() + mealType.slice(1)} Meal</h3>
+              <label>Ingredients (comma-separated):</label>
+              <input
+                type="text"
+                name="ingredients"
+                value={formData[mealType].ingredients}
+                onChange={(e) => handleChange(e, mealType)}
+                required
+              />
+              <br />
+              <label>Instructions:</label>
+              <textarea
+                name="instructions"
+                value={formData[mealType].instructions}
+                onChange={(e) => handleChange(e, mealType)}
+              />
+              <br />
+              <label>Assigned To:</label>
+              <select
+                name="assignedTo"
+                value={formData[mealType].assignedTo}
+                onChange={(e) => handleChange(e, mealType)}
+                required
+              >
+                <option value="">Select Pantry Staff</option>
+                {pantryStaff.map((staff) => (
+                  <option key={staff._id} value={staff._id}>
+                    {staff.name}
+                  </option>
+                ))}
+              </select>
+            </div>
+          ))}
 
-        {/* Submit Button */}
-        <div style={{ marginTop: '20px' }}>
-          <button
-            type="submit"
-            style={{
-              backgroundColor: '#28a745',
-              color: '#fff',
-              border: 'none',
-              padding: '10px 20px',
-              borderRadius: '5px',
-              cursor: 'pointer',
-            }}
-          >
-            Submit
-          </button>
-        </div>
-      </form>
+          {/* Submit Button */}
+          <div style={{ marginTop: '20px' }}>
+            <button
+              type="submit"
+              style={{
+                backgroundColor: '#28a745',
+                color: '#fff',
+                border: 'none',
+                padding: '10px 20px',
+                borderRadius: '5px',
+                cursor: 'pointer',
+              }}
+            >
+              Submit
+            </button>
+          </div>
+        </form>
+      </div>
     </div>
-    </div>
-    
+
   );
 };
 
