@@ -19,7 +19,12 @@ const DeliveryPortal = () => {
 
         const fetchDeliveryPersons = async () => {
             try {
-                const response = await axios.get("https://hospital-food-delivery-management-api.vercel.app/api/staff/delivery");
+                const response = await axios.get("https://hospital-food-delivery-management-api.vercel.app/api/staff/delivery",{
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Access-Control-Allow-Origin': '*',
+                    },
+                },);
                 setDeliveryPersons(response.data); // Populate delivery persons
             } catch (error) {
                 console.error("Error fetching delivery persons:", error);
@@ -35,7 +40,12 @@ const DeliveryPortal = () => {
                 const response = await axios.get(
                     selectedPerson
                         ? `https://hospital-food-delivery-management-api.vercel.app/api/deliveries/deliver/${selectedPerson}`
-                        : "https://hospital-food-delivery-management-api.vercel.app/api/deliveries/deliver/pending"
+                        : "https://hospital-food-delivery-management-api.vercel.app/api/deliveries/deliver/pending",{
+                            headers: {
+                                'Content-Type': 'application/json',
+                                'Access-Control-Allow-Origin': '*',
+                            },
+                        },
                 );
                 setDeliveries(response.data.deliveries || []);
             } catch (error) {
@@ -80,10 +90,10 @@ const DeliveryPortal = () => {
     return (
         <div className="d-flex">
             {/* Sidebar */}
-            <div className="sidebar">
+            <div className="sidebar" style={{ width: '20%' }}>
                 {role === 'manager' ? <ManagerSideBar /> : <PantrySideBar />}
             </div>
-            <div className="container flex-grow-1">
+            <div className=" flex-grow-1 p-4 ">
                 <h2 className="text-center my-4">Delivery Portal</h2>
 
                 {/* Dropdown for selecting delivery person */}

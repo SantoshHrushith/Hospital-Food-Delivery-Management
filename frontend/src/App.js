@@ -23,7 +23,7 @@ function App() {
       <Routes>
         <Route path='/login' element={<Login />} />
         {/* <Route path='/' element={<H />} /> */}
-        <Route element={<PrivateRoute />}>
+        {/* <Route element={<PrivateRoute />}> */}
           <Route path='/managerhome' element={<ManagerHome />} />
           <Route path='/pantryhome' element={<PantryHome />} />
           <Route path='/patients' element={<Patient />} />
@@ -36,7 +36,7 @@ function App() {
           <Route path='/staff' element={<Staff />} />
           <Route path='/pantry' element={<Pantry />} />
           <Route path='/delivery' element={<DeliveryPortal />} /> 
-        </Route>
+        {/* </Route> */}
         <Route path="/" element={<Navigate to="/login" />} />
   {/* Fallback for undefined routes */}
   <Route path="*" element={<Navigate to="/login" />} />

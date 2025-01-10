@@ -74,7 +74,13 @@ const PatientEdit = () => {
         ...formData,
         diseases: formData.diseases.split(',').map((d) => d.trim()),
         allergies: formData.allergies.split(',').map((a) => a.trim()),
-      });
+      },
+        {
+          headers: {
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': '*',
+          },
+        },);
 
       if (response.status === 200) {
         alert('Patient data updated successfully!');
@@ -93,7 +99,7 @@ const PatientEdit = () => {
 
   return (
     <div>
-      <div><ManagerSideBar /></div>
+      <div style={{ width: '20%' }}><ManagerSideBar /></div>
       <div style={{ padding: '20px', maxWidth: '600px', margin: '0 auto' }}>
         <h1 style={{ textAlign: 'center', marginBottom: '20px' }}>Edit Patient</h1>
         <form onSubmit={handleSubmit}>

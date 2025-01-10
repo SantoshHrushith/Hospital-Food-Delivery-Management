@@ -79,7 +79,7 @@ const DietCreate = () => {
 
   return (
     <div className='d-flex'>
-      <div>
+      <div style={{ width: '20%' }}>
         <ManagerSideBar/>
       </div>
       <div className="flex-grow-1" style={{ padding: '20px', maxWidth: '800px', margin: '0 auto' }}>

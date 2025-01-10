@@ -29,7 +29,14 @@ const PatientInfo = () => {
   useEffect(() => {
     const fetchPatientData = async () => {
       try {
-        const response = await axios.get(`https://hospital-food-delivery-management-tau.vercel.app/api/patients/${id}`);
+        const response = await axios.get(`https://hospital-food-delivery-management-tau.vercel.app/api/patients/${id}`,
+          {
+            headers: {
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin': '*',
+            },
+        },
+        );
         const data = response.data;
         setFormData({
           ...data,
@@ -58,7 +65,14 @@ const PatientInfo = () => {
     }).then(async (result) => {
       if (result.isConfirmed) {
         try {
-          await axios.delete(`https://hospital-food-delivery-management-tau.vercel.app/api/patients/${id}`);
+          await axios.delete(`https://hospital-food-delivery-management-tau.vercel.app/api/patients/${id}`,
+            {
+              headers: {
+                  'Content-Type': 'application/json',
+                  'Access-Control-Allow-Origin': '*',
+              },
+          },
+          );
           Swal.fire('Deleted!', 'The patient has been deleted.', 'success');
           navigate('/patients'); // Redirect after deletion
         } catch (error) {
@@ -71,7 +85,7 @@ const PatientInfo = () => {
 
   return (
     <div>
-      <div><ManagerSideBar /></div>
+      <div style={{ width: '20%' }}><ManagerSideBar /></div>
       <div style={{ padding: '20px', maxWidth: '600px', margin: '0 auto' }}>
         <h1 style={{ textAlign: 'center', marginBottom: '20px' }}>Patient Info</h1>
         <div style={{ marginBottom: '20px', textAlign: 'center' }}>

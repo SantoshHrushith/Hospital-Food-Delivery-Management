@@ -19,7 +19,14 @@ const Staff = () => {
     useEffect(() => {
         const fetchStaff = async () => {
             try {
-                const response = await axios.get('https://hospital-food-delivery-management-tau.vercel.app/api/staff');
+                const response = await axios.get('https://hospital-food-delivery-management-tau.vercel.app/api/staff',
+                    {
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Access-Control-Allow-Origin': '*',
+                        },
+                    },
+                );
                 if (response.data.length > 0) {
                     setStaffList(response.data);
                 } else {
@@ -45,7 +52,14 @@ const Staff = () => {
     // Handle staff deletion
     const handleDeleteStaff = async (id) => {
         try {
-            await axios.delete(`https://hospital-food-delivery-management-tau.vercel.app/api/staff/${id}`);
+            await axios.delete(`https://hospital-food-delivery-management-tau.vercel.app/api/staff/${id}`,
+                {
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Access-Control-Allow-Origin': '*',
+                    },
+                },
+            );
             setStaffList(staffList.filter((staff) => staff._id !== id));
             handleCloseModal();
         } catch (error) {
@@ -55,7 +69,7 @@ const Staff = () => {
 
     return (
         <div className='d-flex'>
-            <div className="sidebar">
+            <div className="sidebar" style={{ width: '20%' }}>
                 {role === 'manager' ? <ManagerSideBar /> : <PantrySideBar />}
             </div>
             <div className="container my-4">

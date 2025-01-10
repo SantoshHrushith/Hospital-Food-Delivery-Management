@@ -15,7 +15,12 @@ const Patient = () => {
 
         const fetchPatients = async () => {
             try {
-                const response = await axios.get('https://hospital-food-delivery-management-tau.vercel.app//api/patients');
+                const response = await axios.get('https://hospital-food-delivery-management-tau.vercel.app//api/patients',{
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Access-Control-Allow-Origin': '*',
+                    },
+                },);
                 setPatients(response.data);
                 setFilteredPatients(response.data);
             } catch (error) {
@@ -48,9 +53,9 @@ const Patient = () => {
     };
 
     return (
-        <div>
-            <div><ManagerSideBar /></div>
-            <div style={{ padding: '20px' }}>
+        <div className='d-flex'>
+            <div style={{ width: '20%' }}><ManagerSideBar /></div>
+            <div   className='flex-grow-1 p-4' style={{ width: '100%'}}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px' }}>
                     <h1>Patient Details</h1>
                     <button

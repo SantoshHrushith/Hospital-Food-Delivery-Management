@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { useParams, useNavigate } from 'react-router-dom';
 import ManagerSideBar from '../components/ManagerSideBar';
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 const StaffCreate = () => {
     const [formData, setFormData] = useState({
         name: '',
@@ -43,7 +45,13 @@ const StaffCreate = () => {
                 email,
                 password,
                 role,
-            });
+            }, {
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Access-Control-Allow-Origin': '*',
+                },
+            },
+            );
 
             const userId = userResponse.data.userId;
 
@@ -54,7 +62,12 @@ const StaffCreate = () => {
                 contactInfo,
                 location,
                 role,
-            });
+            }, {
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Access-Control-Allow-Origin': '*',
+                },
+            },);
 
             navigate('/staff');
             setFormData({
@@ -74,7 +87,7 @@ const StaffCreate = () => {
 
     return (
         <div>
-            <div><ManagerSideBar /></div>
+            <div style={{ width: '20%' }}><ManagerSideBar /></div>
             <div className="container mt-5">
                 <h2>Staff Registration</h2>
                 {error && <div className="alert alert-danger">{error}</div>}
