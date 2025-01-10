@@ -21,7 +21,7 @@ const H = () => {
         const fetchedData = response.data;
         console.log('after response');
         setData(fetchedData); // Update state with fetched data
-
+        console.log(response.data);
 
         // setData({});
     };
