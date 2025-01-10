@@ -35,23 +35,43 @@ const DeliveryPortal = () => {
     }, []);
 
     useEffect(() => {
+        // const fetchDeliveries = async () => {
+        //     try {
+        //         const response = await axios.get(
+        //             selectedPerson
+        //                 ? `https://hospital-food-delivery-management-api.vercel.app/api/deliveries/deliver/${selectedPerson}`
+        //                 : "https://hospital-food-delivery-management-api.vercel.app/api/deliveries/deliver/pending",{
+        //                     headers: {
+        //                         'Content-Type': 'application/json',
+        //                         'Access-Control-Allow-Origin': '*',
+        //                     },
+        //                 },
+        //         );
+        //         setDeliveries(response.data.deliveries || []);
+        //     } catch (error) {
+        //         console.error("Error fetching deliveries:", error);
+        //     }
+        // };
+
         const fetchDeliveries = async () => {
             try {
                 const response = await axios.get(
                     selectedPerson
                         ? `https://hospital-food-delivery-management-api.vercel.app/api/deliveries/deliver/${selectedPerson}`
-                        : "https://hospital-food-delivery-management-api.vercel.app/api/deliveries/deliver/pending",{
-                            headers: {
-                                'Content-Type': 'application/json',
-                                'Access-Control-Allow-Origin': '*',
-                            },
+                        : "https://hospital-food-delivery-management-api.vercel.app/api/deliveries/deliver/pending",
+                    {
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Access-Control-Allow-Origin': '*',
                         },
+                    }
                 );
                 setDeliveries(response.data.deliveries || []);
             } catch (error) {
                 console.error("Error fetching deliveries:", error);
             }
         };
+        
 
         fetchDeliveries();
     }, [selectedPerson]); // Refetch deliveries when selectedPerson changes

@@ -68,4 +68,39 @@ router.post('/create', async (req, res) => {
     }
   });
 
+  router.put('/edit/:id', async (req, res) => {
+    const { id } = req.params; // Get the ID from the URL parameter
+    const { name, contactInfo, location, role } = req.body; // Get the updated data from the request body
+
+    if (!name || !contactInfo || !location || !role) {
+        return res.status(400).json({ message: 'All fields are required.' });
+    }
+
+    try {
+        // Find the pantry staff by ID
+        const existingStaff = await PantryStaff.findById(id);
+        if (!existingStaff) {
+            return res.status(404).json({ message: 'Pantry staff not found.' });
+        }
+
+        // Update the fields with the new data
+        existingStaff.name = name;
+        existingStaff.contactInfo = contactInfo;
+        existingStaff.location = location;
+        existingStaff.role = role;
+
+        // Save the updated staff data to the database
+        const updatedStaff = await existingStaff.save();
+
+        res.status(200).json({
+            message: 'Pantry staff updated successfully',
+            staff: updatedStaff,
+        });
+    } catch (error) {
+        console.error('Error updating pantry staff:', error);
+        res.status(500).json({ message: 'Server error while updating pantry staff.' });
+    }
+});
+
+
 export default router;
