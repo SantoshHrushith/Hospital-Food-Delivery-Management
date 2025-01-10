@@ -15,7 +15,7 @@ const Patient = () => {
 
         const fetchPatients = async () => {
             try {
-                const response = await axios.get('https://hospital-food-delivery-management-tau.vercel.app//api/patients',{
+                const response = await axios.get('https://hospital-food-delivery-management-tau.vercel.app/api/patients',{
                     headers: {
                         'Content-Type': 'application/json',
                         'Access-Control-Allow-Origin': '*',
