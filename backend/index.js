@@ -20,7 +20,7 @@ app.use(express.json());
 app.use(cors({
     origin: [
         "http://localhost:3000", // For local development
-        "https://hospital-food-delivery-management.vercel.app" // Deployed front-end URL
+        "https://hospital-food-delivery-management-f.vercel.app/" // Deployed front-end URL
     ],
     methods: ["POST", "GET", "PUT", "DELETE"],
     credentials: true
