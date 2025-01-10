@@ -15,7 +15,7 @@ const Patient = () => {
 
         const fetchPatients = async () => {
             try {
-                const response = await axios.get('https://hospital-food-delivery-management-api.vercel.app/api/patients');
+                const response = await axios.get('https://hospital-food-delivery-management-tau.vercel.app//api/patients');
                 setPatients(response.data);
                 setFilteredPatients(response.data);
             } catch (error) {

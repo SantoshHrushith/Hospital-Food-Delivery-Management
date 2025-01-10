@@ -29,7 +29,7 @@ const PatientEdit = () => {
   useEffect(() => {
     const fetchPatientData = async () => {
       try {
-        const response = await axios.get(`https://hospital-food-delivery-management-api.vercel.app/api/patients/${id}`);
+        const response = await axios.get(`https://hospital-food-delivery-management-tau.vercel.app/api/patients/${id}`);
         const data = response.data;
         setFormData({
           ...data,
@@ -70,7 +70,7 @@ const PatientEdit = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.put(`https://hospital-food-delivery-management-api.vercel.app/api/patients/${id}`, {
+      const response = await axios.put(`https://hospital-food-delivery-management-tau.vercel.app/api/patients/${id}`, {
         ...formData,
         diseases: formData.diseases.split(',').map((d) => d.trim()),
         allergies: formData.allergies.split(',').map((a) => a.trim()),

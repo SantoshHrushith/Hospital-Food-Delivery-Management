@@ -38,7 +38,7 @@ const StaffCreate = () => {
 
         try {
             // Step 1: Register the user
-            const userResponse = await axios.post('https://hospital-food-delivery-management-api.vercel.app/api/users/register', {
+            const userResponse = await axios.post('https://hospital-food-delivery-management-tau.vercel.app/api/users/register', {
                 name,
                 email,
                 password,
@@ -48,7 +48,7 @@ const StaffCreate = () => {
             const userId = userResponse.data.userId;
 
             // Step 2: Create the pantry staff
-            await axios.post('https://hospital-food-delivery-management-api.vercel.app/api/staff/create', {
+            await axios.post('https://hospital-food-delivery-management-tau.vercel.app/api/staff/create', {
                 userId,
                 name,
                 contactInfo,

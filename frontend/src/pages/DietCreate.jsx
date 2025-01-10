@@ -65,7 +65,7 @@ const DietCreate = () => {
         },
       };
 
-      const response = await axios.post('https://hospital-food-delivery-management-api.vercel.app/api/diets/create', payload);
+      const response = await axios.post('https://hospital-food-delivery-management-tau.vercel.app/api/diets/create', payload);
 
       if (response.status === 201) {
         alert('Diet successfully created!');

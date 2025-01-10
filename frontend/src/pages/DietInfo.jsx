@@ -15,7 +15,7 @@ const DietInfo = () => {
     // Fetch the diet details for the patient
     const fetchDiet = async () => {
       try {
-        const response = await axios.get(`https://hospital-food-delivery-management-api.vercel.app/api/diets/${id}`);
+        const response = await axios.get(`https://hospital-food-delivery-management-tau.vercel.app/api/diets/${id}`);
         setDiet(response.data);
       } catch (error) {
         console.error('Error fetching diet:', error);

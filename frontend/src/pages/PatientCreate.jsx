@@ -46,7 +46,7 @@ const PatientCreate = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post(`https://hospital-food-delivery-management-api.vercel.app/api/patients/create`, {
+      const response = await axios.post(`https://hospital-food-delivery-management-tau.vercel.app/api/patients/create`, {
         ...formData,
         diseases: formData.diseases.split(',').map((d) => d.trim()),
         allergies: formData.allergies.split(',').map((a) => a.trim()),

@@ -19,7 +19,7 @@ const Staff = () => {
     useEffect(() => {
         const fetchStaff = async () => {
             try {
-                const response = await axios.get('https://hospital-food-delivery-management-api.vercel.app/api/staff');
+                const response = await axios.get('https://hospital-food-delivery-management-tau.vercel.app/api/staff');
                 if (response.data.length > 0) {
                     setStaffList(response.data);
                 } else {
@@ -45,7 +45,7 @@ const Staff = () => {
     // Handle staff deletion
     const handleDeleteStaff = async (id) => {
         try {
-            await axios.delete(`https://hospital-food-delivery-management-api.vercel.app/api/staff/${id}`);
+            await axios.delete(`https://hospital-food-delivery-management-tau.vercel.app/api/staff/${id}`);
             setStaffList(staffList.filter((staff) => staff._id !== id));
             handleCloseModal();
         } catch (error) {

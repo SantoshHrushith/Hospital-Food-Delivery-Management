@@ -20,7 +20,7 @@ const Pantry = () => {
         setRole(userRole);
         const fetchDeliveries = async () => {
             try {
-                const response = await axios.get('https://hospital-food-delivery-management-api.vercel.app/api/deliveries/pantry/pending');
+                const response = await axios.get('https://hospital-food-delivery-management-tau.vercel.app//api/deliveries/pantry/pending');
                 setAllDeliveries(response.data.deliveries || []);
                 setDeliveries(response.data.deliveries || []);
             } catch (error) {

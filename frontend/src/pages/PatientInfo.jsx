@@ -29,7 +29,7 @@ const PatientInfo = () => {
   useEffect(() => {
     const fetchPatientData = async () => {
       try {
-        const response = await axios.get(`https://hospital-food-delivery-management-api.vercel.app/api/patients/${id}`);
+        const response = await axios.get(`https://hospital-food-delivery-management-tau.vercel.app/api/patients/${id}`);
         const data = response.data;
         setFormData({
           ...data,
@@ -58,7 +58,7 @@ const PatientInfo = () => {
     }).then(async (result) => {
       if (result.isConfirmed) {
         try {
-          await axios.delete(`https://hospital-food-delivery-management-api.vercel.app/api/patients/${id}`);
+          await axios.delete(`https://hospital-food-delivery-management-tau.vercel.app/api/patients/${id}`);
           Swal.fire('Deleted!', 'The patient has been deleted.', 'success');
           navigate('/patients'); // Redirect after deletion
         } catch (error) {

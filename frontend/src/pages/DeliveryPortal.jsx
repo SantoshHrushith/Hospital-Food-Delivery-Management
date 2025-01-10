@@ -53,7 +53,7 @@ const DeliveryPortal = () => {
 
     const handleUpdateStatus = async () => {
         try {
-            await axios.put(`https://hospital-food-delivery-management-api.vercel.app/api/deliveries/update/${selectedDelivery._id}`, {
+            await axios.put(`https://hospital-food-delivery-management-tau.vercel.app/api/deliveries/update/${selectedDelivery._id}`, {
                 status: deliveryStatus,
             });
             alert("Status updated successfully!");

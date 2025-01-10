@@ -22,7 +22,7 @@ const ManagerDashboard = () => {
         const fetchData = async () => {
             try {
                 // Fetch data from the backend
-                const response = await axios.get('https://hospital-food-delivery-management-api.vercel.app/api/dashboard/pantry'); // Adjust the API endpoint as needed
+                const response = await axios.get('https://hospital-food-delivery-management-tau.vercel.app/api/dashboard/pantry'); // Adjust the API endpoint as needed
                 const { stats, deliveries } = response.data;
 
                 // Update state with fetched data
