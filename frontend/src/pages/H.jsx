@@ -4,20 +4,10 @@ import axios from 'axios';
 const H = () => {
     const [data, setData] = useState(null); // State to store the fetched data
 
-    const handleClick = () => {
+    const handleClick = async () => {
         try {
-            const response =  axios.get(`https://hospital-food-delivery-management-tau.vercel.app/api/patients/6780f8358f06bc248b2542ef`);
-            // const response = axios.get(
-            //     `https://hospital-food-delivery-management-tau.vercel.app/api/patients/6780f8358f06bc248b2542ef`,
-            //     {
-            //       headers: {
-            //         'Content-Type': 'application/json',
-            //         'Access-Control-Allow-Origin': '*',
-            //       },
-            //     }
-            //   );
+            const response = await axios.get(`https://hospital-food-delivery-management-tau.vercel.app/api/patients/6780f8358f06bc248b2542ef`);
             const fetchedData = response.data;
-            console.log(response.data);
             setData(fetchedData); // Update state with fetched data
         } catch (error) {
             console.error('Error fetching data:', error);
