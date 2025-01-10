@@ -4,9 +4,9 @@ import axios from 'axios';
 const H = () => {
     const [data, setData] = useState(null); // State to store the fetched data
 
-    const handleClick = async (id) => {
+    const handleClick = async () => {
         try {
-            const response = await axios.get(`https://hospital-food-delivery-management-tau.vercel.app/api/patients/${id}`);
+            const response = await axios.get(`https://hospital-food-delivery-management-tau.vercel.app/api/patients/6780f8358f06bc248b2542ef`);
             const fetchedData = response.data;
             setData(fetchedData); // Update state with fetched data
         } catch (error) {
@@ -17,7 +17,7 @@ const H = () => {
     return (
         <div>
             <h1>Patient Information</h1>
-            <button onClick={() => handleClick('6780f8358f06bc248b2542ef')}>Check</button>
+            <button onClick={() => handleClick()}>Check</button>
             {/* Conditionally render data */}
             {data ? (
                 <div>
