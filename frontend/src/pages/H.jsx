@@ -4,9 +4,9 @@ import axios from 'axios';
 const H = () => {
     const [data, setData] = useState(null); // State to store the fetched data
 
-    const handleClick = async () => {
+    const handleClick = () => {
         try {
-            const response = await axios.get(`https://hospital-food-delivery-management-tau.vercel.app/api/patients/6780f8358f06bc248b2542ef`);
+            const response = axios.get(`https://hospital-food-delivery-management-tau.vercel.app/api/patients/6780f8358f06bc248b2542ef`);
             const fetchedData = response.data;
             setData(fetchedData); // Update state with fetched data
         } catch (error) {
