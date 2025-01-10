@@ -37,7 +37,7 @@ const DietInfo = () => {
     return (
       <div>
       <div><ManagerSideBar/></div>
-      <div style={{ padding: '20px', maxWidth: '600px', margin: '0 auto' }}>
+      <div className="flex-grow-1" style={{ padding: '20px', maxWidth: '600px', margin: '0 auto' }}>
         <h1>No Diet Plan Found</h1>
         <p>The patient does not have a diet plan. You can create one.</p>
         <button

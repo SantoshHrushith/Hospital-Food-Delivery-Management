@@ -55,7 +55,13 @@ const DeliveryPortal = () => {
         try {
             await axios.put(`https://hospital-food-delivery-management-tau.vercel.app/api/deliveries/update/${selectedDelivery._id}`, {
                 status: deliveryStatus,
-            });
+            },
+            {
+                headers: {
+                    'Content-Type': 'application/json',
+                        'Access-Control-Allow-Origin': '*',
+                },
+            },);
             alert("Status updated successfully!");
 
             setDeliveries((prevDeliveries) =>
@@ -77,7 +83,7 @@ const DeliveryPortal = () => {
             <div className="sidebar">
                 {role === 'manager' ? <ManagerSideBar /> : <PantrySideBar />}
             </div>
-            <div className="container">
+            <div className="container flex-grow-1">
                 <h2 className="text-center my-4">Delivery Portal</h2>
 
                 {/* Dropdown for selecting delivery person */}
