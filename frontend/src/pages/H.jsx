@@ -6,8 +6,20 @@ const H = () => {
 
     const handleClick = () => {
 
-        const response = axios.get(`https://hospital-food-delivery-management-tau.vercel.app/api/patients/6780f8358f06bc248b2542ef`);
+        // const response = axios.get(`https://hospital-food-delivery-management-tau.vercel.app/api/patients/6780f8358f06bc248b2542ef`);
+        console.log('entry');
+        const response = axios.get(
+            `https://hospital-food-delivery-management-tau.vercel.app/api/patients/6780f8358f06bc248b2542ef`,
+            {
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Access-Control-Allow-Origin': '*',
+                },
+            }
+        );
+        console.log('after api call');
         const fetchedData = response.data;
+        console.log('after response');
         setData(fetchedData); // Update state with fetched data
 
 
