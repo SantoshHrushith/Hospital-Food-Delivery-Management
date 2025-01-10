@@ -17,14 +17,16 @@ connectDB(); // Connect to MongoDB
 console.log('MONGO_URI:', process.env.MONGO_URI);
 const app = express();
 app.use(express.json());
-app.use(cors({
-    origin: [
-        "http://localhost:3000", // For local development
-        "https://hospital-food-delivery-management-f.vercel.app" // Deployed front-end URL
-    ],
-    methods: ["POST", "GET", "PUT", "DELETE"],
-    credentials: true
-}));
+// app.use(cors({
+//     origin: [
+//         // "http://localhost:3000", // For local development
+//         "https://hospital-food-delivery-management-f.vercel.app" // Deployed front-end URL
+//     ],
+//     methods: ["POST", "GET", "PUT", "DELETE"],
+//     credentials: true
+// }));
+
+app.use(cors());
 
 
 const PORT = process.env.PORT || 5000;
