@@ -5,8 +5,8 @@ import Swal from 'sweetalert2';
 
 // Axios instance configuration
 const API = axios.create({
-    // baseURL: 'https://hospital-food-delivery-management-tau.vercel.app/api', // Backend URL
-    baseURL: 'http://localhost:5000/api',
+    baseURL: 'https://hospital-food-delivery-management-tau.vercel.app/api', // Backend URL
+    // baseURL: 'http://localhost:5000/api',
     withCredentials: true, // Ensures cookies or headers are sent
 });
 
