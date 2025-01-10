@@ -6,9 +6,18 @@ const H = () => {
 
     const handleClick = () => {
         try {
-            const response =  axios.get(`https://hospital-food-delivery-management-tau.vercel.app/api/patients/6780f8358f06bc248b2542ef`);
+            // const response =  axios.get(`https://hospital-food-delivery-management-tau.vercel.app/api/patients/6780f8358f06bc248b2542ef`);
+            const response = axios.get(
+                `https://hospital-food-delivery-management-tau.vercel.app/api/patients/6780f8358f06bc248b2542ef`,
+                {
+                  headers: {
+                    'Content-Type': 'application/json',
+                    'Access-Control-Allow-Origin': '*',
+                  },
+                }
+              );
             const fetchedData = response.data;
-            console.log(response);
+            console.log(response.data);
             setData(fetchedData); // Update state with fetched data
         } catch (error) {
             console.error('Error fetching data:', error);
