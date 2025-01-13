@@ -16,7 +16,6 @@ import DeliveryPortal from './pages/DeliveryPortal.jsx';
 import PantryHome from './pages/PantryHome.jsx';
 import { Navigate } from 'react-router-dom';
 import H from './pages/H.jsx';
-import StaffEdit from './pages/StaffEdit.jsx';
 
 function App() {
   return (
