@@ -20,7 +20,7 @@ const Pantry = () => {
         setRole(userRole);
         const fetchDeliveries = async () => {
             try {
-                const response = await axios.get('https://hospital-food-delivery-management-tau.vercel.app//api/deliveries/pantry/pending',
+                const response = await axios.get('https://hospital-food-delivery-management-tau.vercel.app/api/deliveries/pantry/pending',
                     {
                         headers: {
                             'Content-Type': 'application/json',
@@ -37,7 +37,7 @@ const Pantry = () => {
 
         const fetchDeliveryStaff = async () => {
             try {
-                const response = await axios.get('https://hospital-food-delivery-management-api.vercel.app/api/staff/delivery',{
+                const response = await axios.get('https://hospital-food-delivery-management-tau.vercel.app/api/staff/delivery',{
                     headers: {
                         'Content-Type': 'application/json',
                         'Access-Control-Allow-Origin': '*',
@@ -51,7 +51,7 @@ const Pantry = () => {
 
         const fetchPantryStaff = async () => {
             try {
-                const response = await axios.get('https://hospital-food-delivery-management-api.vercel.app/api/staff/pantry',
+                const response = await axios.get('https://hospital-food-delivery-management-tau.vercel.app/api/staff/pantry',
                     {
                         headers: {
                             'Content-Type': 'application/json',
@@ -106,7 +106,7 @@ const Pantry = () => {
             };
 
             await axios.put(
-                `https://hospital-food-delivery-management-api.vercel.app/api/deliveries/assign/${selectedDelivery._id}`,
+                `https://hospital-food-delivery-management-tau.vercel.app/api/deliveries/assign/${selectedDelivery._id}`,
                 data,
                 {
                     headers: {

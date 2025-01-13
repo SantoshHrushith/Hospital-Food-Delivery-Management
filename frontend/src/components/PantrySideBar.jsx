@@ -39,7 +39,7 @@ const PantrySideBar = () => {
             >
                 <div className="nav-link text-center p-md-3 w-100">
                     <h3 className="poppins-light">
-                        <span className="text-primary" style={{ color: 'rgb(104,179,185)' }}>
+                        <span className="text-primary" style={{ color: 'rgb(104,179,185)' }} onClick={() => navigate('/pantryhome')}>
                             Pantry Panel
                         </span>
                     </h3>

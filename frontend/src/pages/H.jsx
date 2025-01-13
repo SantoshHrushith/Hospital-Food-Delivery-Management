@@ -6,10 +6,10 @@ const H = () => {
 
     // const handleClick = () => {
 
-    //     // const response = axios.get(`https://hospital-food-delivery-management-tau.vercel.app/api/patients/6780f8358f06bc248b2542ef`);
+    //     // const response = axios.get(`http://localhost:5000/api/patients/6780f8358f06bc248b2542ef`);
     //     console.log('entry');
     //     const response = axios.get(
-    //         `https://hospital-food-delivery-management-tau.vercel.app/api/patients/6780f8358f06bc248b2542ef`,
+    //         `http://localhost:5000/api/patients/6780f8358f06bc248b2542ef`,
     //         {
     //             headers: {
     //                 'Content-Type': 'application/json',
@@ -32,7 +32,7 @@ const H = () => {
     //         console.log('entry');
     //         try {
     //           const response = await axios.get(
-    //             `https://hospital-food-delivery-management-tau.vercel.app/api/patients/6780f8358f06bc248b2542ef`,
+    //             `http://localhost:5000/api/patients/6780f8358f06bc248b2542ef`,
     //             {
     //               headers: {
     //                 'Content-Type': 'application/json',
@@ -55,7 +55,7 @@ const H = () => {
       
         try {
           const response = await axios.get(
-            'https://hospital-food-delivery-management-tau.vercel.app/api/patients/6780f8358f06bc248b2542ef',
+            'http://localhost:5000/api/patients/6780f8358f06bc248b2542ef',
             {
               headers: {
                 'Content-Type': 'application/json',

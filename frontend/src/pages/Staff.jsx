@@ -3,11 +3,13 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import ManagerSideBar from '../components/ManagerSideBar';
 import PantrySideBar from '../components/PantrySideBar';
+
 const Staff = () => {
     const [staffList, setStaffList] = useState([]);
     const [selectedStaff, setSelectedStaff] = useState(null);
-    const navigate = useNavigate();
+    const [editMode, setEditMode] = useState(false);
     const [role, setRole] = useState('');
+    const navigate = useNavigate();
 
     // Fetch role from localStorage
     useEffect(() => {
@@ -19,19 +21,13 @@ const Staff = () => {
     useEffect(() => {
         const fetchStaff = async () => {
             try {
-                const response = await axios.get('https://hospital-food-delivery-management-tau.vercel.app/api/staff',
-                    {
-                        headers: {
-                            'Content-Type': 'application/json',
-                            'Access-Control-Allow-Origin': '*',
-                        },
+                const response = await axios.get('https://hospital-food-delivery-management-tau.vercel.app/api/staff', {
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Access-Control-Allow-Origin': '*',
                     },
-                );
-                if (response.data.length > 0) {
-                    setStaffList(response.data);
-                } else {
-                    setStaffList([]);
-                }
+                });
+                setStaffList(response.data);
             } catch (error) {
                 console.error('Error fetching staff:', error);
             }
@@ -47,23 +43,55 @@ const Staff = () => {
     // Close modal
     const handleCloseModal = () => {
         setSelectedStaff(null);
+        setEditMode(false);
     };
 
     // Handle staff deletion
     const handleDeleteStaff = async (id) => {
         try {
-            await axios.delete(`https://hospital-food-delivery-management-tau.vercel.app/api/staff/${id}`,
+            await axios.delete(`https://hospital-food-delivery-management-tau.vercel.app/api/staff/delete/${id}`, {
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Access-Control-Allow-Origin': '*',
+                },
+            });
+            setStaffList(staffList.filter((staff) => staff._id !== id));
+            handleCloseModal();
+        } catch (error) {
+            console.error('Error deleting staff:', error);
+        }
+    };
+
+    // Handle Edit Button Click
+    const handleEditClick = (staff) => {
+        setSelectedStaff(staff);
+        setEditMode(true);
+    };
+
+    // Handle Form Submit for Edit
+    const handleEditSubmit = async (e) => {
+        e.preventDefault();
+        try {
+            const { _id, name, userid, role, contactInfo, location } = selectedStaff;
+
+            await axios.put(
+                `https://hospital-food-delivery-management-tau.vercel.app/api/staff/edit/${_id}`,
+                { name, email: userid.email, role, contactInfo, location },
                 {
                     headers: {
                         'Content-Type': 'application/json',
                         'Access-Control-Allow-Origin': '*',
                     },
-                },
+                }
             );
-            setStaffList(staffList.filter((staff) => staff._id !== id));
+
+            const updatedList = staffList.map((staff) =>
+                staff._id === _id ? selectedStaff : staff
+            );
+            setStaffList(updatedList);
             handleCloseModal();
         } catch (error) {
-            console.error('Error deleting staff:', error);
+            console.error('Error updating staff:', error);
         }
     };
 
@@ -101,11 +129,7 @@ const Staff = () => {
                         </thead>
                         <tbody>
                             {staffList.map((staff, index) => (
-                                <tr
-                                    key={staff._id}
-                                    onClick={() => handleRowClick(staff)}
-                                    style={{ cursor: 'pointer' }}
-                                >
+                                <tr key={staff._id} style={{ cursor: 'pointer' }}>
                                     <td>{index + 1}</td>
                                     <td>{staff.name}</td>
                                     <td>{staff.userid.email}</td>
@@ -114,19 +138,13 @@ const Staff = () => {
                                     {role === 'manager' && (
                                         <td>
                                             <button
-                                                onClick={(e) => {
-                                                    e.stopPropagation();
-                                                    handleRowClick(staff);
-                                                }}
+                                                onClick={() => handleEditClick(staff)}
                                                 className="btn btn-primary me-2"
                                             >
                                                 Edit
                                             </button>
                                             <button
-                                                onClick={(e) => {
-                                                    e.stopPropagation();
-                                                    handleDeleteStaff(staff._id);
-                                                }}
+                                                onClick={() => handleDeleteStaff(staff._id)}
                                                 className="btn btn-danger"
                                             >
                                                 Delete
@@ -139,12 +157,12 @@ const Staff = () => {
                     </table>
                 )}
 
-                {/* Modal for Staff Details */}
-                {selectedStaff && (
+                {/* Edit Modal */}
+                {editMode && selectedStaff && (
                     <div
                         className="modal show d-block"
                         style={{ backgroundColor: 'rgba(0, 0, 0, 0.5)' }}
-                        onClick={() => setSelectedStaff(null)}
+                        onClick={handleCloseModal}
                     >
                         <div
                             className="modal-dialog modal-lg"
@@ -152,20 +170,102 @@ const Staff = () => {
                         >
                             <div className="modal-content">
                                 <div className="modal-header">
-                                    <h5 className="modal-title">Staff Details</h5>
+                                    <h5 className="modal-title">Edit Staff Details</h5>
                                     <button
                                         type="button"
                                         className="btn-close"
-                                        onClick={() => setSelectedStaff(null)}
+                                        onClick={handleCloseModal}
                                     ></button>
                                 </div>
-                                <div className="modal-body">
-                                    <p><strong>Name:</strong> {selectedStaff.name}</p>
-                                    <p><strong>Email:</strong> {selectedStaff.userid.email}</p>
-                                    <p><strong>Role:</strong> {selectedStaff.role}</p>
-                                    <p><strong>Contact Number:</strong> {selectedStaff.contactInfo}</p>
-                                    <p><strong>Location:</strong> {selectedStaff.location}</p>
-                                </div>
+                                <form onSubmit={handleEditSubmit}>
+                                    <div className="modal-body">
+                                        <div className="mb-3">
+                                            <label className="form-label">Name</label>
+                                            <input
+                                                type="text"
+                                                className="form-control"
+                                                value={selectedStaff.name}
+                                                onChange={(e) =>
+                                                    setSelectedStaff({
+                                                        ...selectedStaff,
+                                                        name: e.target.value,
+                                                    })
+                                                }
+                                            />
+                                        </div>
+                                        <div className="mb-3">
+                                            <label className="form-label">Email</label>
+                                            <input
+                                                type="email"
+                                                className="form-control"
+                                                value={selectedStaff.userid.email}
+                                                onChange={(e) =>
+                                                    setSelectedStaff({
+                                                        ...selectedStaff,
+                                                        userid: {
+                                                            ...selectedStaff.userid,
+                                                            email: e.target.value,
+                                                        },
+                                                    })
+                                                }
+                                            />
+                                        </div>
+                                        <div className="mb-3">
+                                            <label className="form-label">Role</label>
+                                            <input
+                                                type="text"
+                                                className="form-control"
+                                                value={selectedStaff.role}
+                                                onChange={(e) =>
+                                                    setSelectedStaff({
+                                                        ...selectedStaff,
+                                                        role: e.target.value,
+                                                    })
+                                                }
+                                            />
+                                        </div>
+                                        <div className="mb-3">
+                                            <label className="form-label">Contact Number</label>
+                                            <input
+                                                type="text"
+                                                className="form-control"
+                                                value={selectedStaff.contactInfo}
+                                                onChange={(e) =>
+                                                    setSelectedStaff({
+                                                        ...selectedStaff,
+                                                        contactInfo: e.target.value,
+                                                    })
+                                                }
+                                            />
+                                        </div>
+                                        <div className="mb-3">
+                                            <label className="form-label">Location</label>
+                                            <input
+                                                type="text"
+                                                className="form-control"
+                                                value={selectedStaff.location}
+                                                onChange={(e) =>
+                                                    setSelectedStaff({
+                                                        ...selectedStaff,
+                                                        location: e.target.value,
+                                                    })
+                                                }
+                                            />
+                                        </div>
+                                    </div>
+                                    <div className="modal-footer">
+                                        <button
+                                            type="button"
+                                            className="btn btn-secondary"
+                                            onClick={handleCloseModal}
+                                        >
+                                            Cancel
+                                        </button>
+                                        <button type="submit" className="btn btn-primary">
+                                            Save Changes
+                                        </button>
+                                    </div>
+                                </form>
                             </div>
                         </div>
                     </div>

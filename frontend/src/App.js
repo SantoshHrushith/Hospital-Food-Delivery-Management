@@ -16,6 +16,7 @@ import DeliveryPortal from './pages/DeliveryPortal.jsx';
 import PantryHome from './pages/PantryHome.jsx';
 import { Navigate } from 'react-router-dom';
 import H from './pages/H.jsx';
+import StaffEdit from './pages/StaffEdit.jsx';
 
 function App() {
   return (
@@ -36,6 +37,7 @@ function App() {
           <Route path='/staff' element={<Staff />} />
           <Route path='/pantry' element={<Pantry />} />
           <Route path='/delivery' element={<DeliveryPortal />} /> 
+          {/* <Route path='/staff/edit/:id' element={<StaffEdit />} /> */}
         </Route>
         <Route path="/" element={<Navigate to="/login" />} />
   {/* Fallback for undefined routes */}

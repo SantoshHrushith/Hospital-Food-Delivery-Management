@@ -20,7 +20,7 @@ const DietCreate = () => {
   useEffect(() => {
     const fetchPantryStaff = async () => {
       try {
-        const response = await axios.get('https://hospital-food-delivery-management-api.vercel.app/api/staff',
+        const response = await axios.get('https://hospital-food-delivery-management-tau.vercel.app/api/staff/pantry',
           {
             headers: {
                 'Content-Type': 'application/json',

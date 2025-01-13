@@ -231,7 +231,7 @@ router.get('/deliver/pending', async (req, res) => {
     // Find all deliveries with status "Pending"
     const pendingDeliveries = await Delivery.find({ status: { $in: ['Out for Delivery','Preparing'] } })
       .populate('dietid')
-      .populate('patientid', 'name')
+      .populate('patientid')
       .populate('preparedBy', 'name') // Populate preparedBy with name
       .populate('deliveredBy', 'name'); // Populate deliveredBy with name
 

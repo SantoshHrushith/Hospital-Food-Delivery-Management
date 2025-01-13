@@ -102,5 +102,26 @@ router.post('/create', async (req, res) => {
     }
 });
 
+router.delete('/delete/:id', async (req, res) => {
+    const { id } = req.params; // Get the ID from the URL parameter
+
+    try {
+        // Find the pantry staff by ID
+        const existingStaff = await PantryStaff.findById(id);
+        if (!existingStaff) {
+            return res.status(404).json({ message: 'Pantry staff not found.' });
+        }
+
+        // Remove the staff from the database
+        await existingStaff.deleteOne();
+
+        res.status(200).json({ message: 'Pantry staff deleted successfully.' });
+    } catch (error) {
+        console.error('Error deleting pantry staff:', error);
+        res.status(500).json({ message: 'Server error while deleting pantry staff.' });
+    }
+});
+
+
 
 export default router;

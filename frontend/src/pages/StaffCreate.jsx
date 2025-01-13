@@ -45,7 +45,8 @@ const StaffCreate = () => {
                 email,
                 password,
                 role,
-            }, {
+            },
+             {
                 headers: {
                     'Content-Type': 'application/json',
                     'Access-Control-Allow-Origin': '*',
@@ -62,12 +63,14 @@ const StaffCreate = () => {
                 contactInfo,
                 location,
                 role,
-            }, {
+            }, 
+            {
                 headers: {
                     'Content-Type': 'application/json',
                     'Access-Control-Allow-Origin': '*',
                 },
-            },);
+            },
+        );
 
             navigate('/staff');
             setFormData({
@@ -86,9 +89,9 @@ const StaffCreate = () => {
     };
 
     return (
-        <div>
+        <div className='d-flex'>
             <div style={{ width: '20%' }}><ManagerSideBar /></div>
-            <div className="container mt-5">
+            <div className="container my-4" style={{ width: '100%'}}>
                 <h2>Staff Registration</h2>
                 {error && <div className="alert alert-danger">{error}</div>}
                 <form onSubmit={handleSubmit}>

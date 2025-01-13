@@ -19,7 +19,7 @@ const DeliveryPortal = () => {
 
         const fetchDeliveryPersons = async () => {
             try {
-                const response = await axios.get('https://hospital-food-delivery-management-api.vercel.app/api/staff/delivery',{
+                const response = await axios.get('https://hospital-food-delivery-management-tau.vercel.app/api/staff/delivery',{
                     headers: {
                         'Content-Type': 'application/json',
                         'Access-Control-Allow-Origin': '*',
@@ -39,8 +39,8 @@ const DeliveryPortal = () => {
         //     try {
         //         const response = await axios.get(
         //             selectedPerson
-        //                 ? `https://hospital-food-delivery-management-api.vercel.app/api/deliveries/deliver/${selectedPerson}`
-        //                 : "https://hospital-food-delivery-management-api.vercel.app/api/deliveries/deliver/pending",{
+        //                 ? `https://hospital-food-delivery-management-tau.vercel.app/api/deliveries/deliver/${selectedPerson}`
+        //                 : "https://hospital-food-delivery-management-tau.vercel.app/api/deliveries/deliver/pending",{
         //                     headers: {
         //                         'Content-Type': 'application/json',
         //                         'Access-Control-Allow-Origin': '*',
@@ -57,14 +57,14 @@ const DeliveryPortal = () => {
             try {
                 const response = await axios.get(
                     selectedPerson
-                        ? `https://hospital-food-delivery-management-api.vercel.app/api/deliveries/deliver/${selectedPerson}`
-                        : 'https://hospital-food-delivery-management-api.vercel.app/api/deliveries/deliver/pending',
-                    {
-                        headers: {
-                            'Content-Type': 'application/json',
-                            'Access-Control-Allow-Origin': '*',
-                        },
-                    }
+                        ? `https://hospital-food-delivery-management-tau.vercel.app/api/deliveries/deliver/${selectedPerson}`
+                        : 'https://hospital-food-delivery-management-tau.vercel.app/api/deliveries/deliver/pending',
+                    // {
+                    //     headers: {
+                    //         'Content-Type': 'application/json',
+                    //         'Access-Control-Allow-Origin': '*',
+                    //     },
+                    // }
                 );
                 setDeliveries(response.data.deliveries || []);
             } catch (error) {
@@ -80,6 +80,7 @@ const DeliveryPortal = () => {
         setSelectedDelivery(delivery);
         setDeliveryStatus(delivery.status);
     };
+    console.log(selectedDelivery);
 
     const handleUpdateStatus = async () => {
         try {
@@ -198,7 +199,7 @@ const DeliveryPortal = () => {
                                     <p><strong>Delivery Time:</strong> {selectedDelivery.deliveryTime || "N/A"}</p>
                                     <p><strong>Notes:</strong> {selectedDelivery.notes || "N/A"}</p>
 
-                                    {role === "delivery" && selectedPerson === selectedDelivery.mealid && (
+                                    {role === "delivery" && (
                                         <div>
                                             <h4>Update Status</h4>
                                             <select
